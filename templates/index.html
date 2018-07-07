@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <table style="border: 1px solid black;">
+        <thead><h2>Person Table</h2></thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Age
+            </th>
+            <th>
+                Date Added
+            </th>
+        </tr>
+
+        {% for person, date in db_list_small_dates %}
+            <tr>
+                <th>
+                    {{ forloop.counter }}
+                </th>
+                <th>
+                    {{ person.name }}
+                </th>
+                <th>
+                    {{ person.age }}
+                </th>
+                <th>
+                    {{ date }}
+                </th>
+            </tr>
+        {% endfor %}
+
+    </table>
+</body>
+</html>
