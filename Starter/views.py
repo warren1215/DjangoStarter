@@ -33,9 +33,28 @@ class SteamView(TemplateView):
         key = '3206A3A552DA6FBE2D7FD6DCE523026B'
 
         # My steam id, for warren1215's profile.
+        # 76561198097834692 - warren
+        # 76561198034593027 - d
+        # 76561197992328350 - t
+
         steamID = str(76561198097834692)
 
         # Getting all of my steam games and time played for each.
-        context['game'] = gamespulling(steamID, key)
+        games = gamespulling(steamID, key)
+        context['game'] = games
 
+        total_minutes = 0
+
+        for game in games:
+            total_minutes = total_minutes + int(game['playtime_forever'])
+
+        context['total_minutes'] = total_minutes
+        context['total_hours'] = int(total_minutes / 60)
+
+        if total_minutes > 500000:
+            help_status = "You need help"
+        else:
+            help_status = "rawr xd"
+
+        context['need_help'] = help_status
         return context
