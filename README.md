@@ -8,7 +8,9 @@ A starter project to begin using Django quickly.
 
 1. After cloning repo, navigate to the DjangoStarter directory.
 
-2. Enter command: *python manage.py runserver*
+2. Enter command: *pip install -r requirements.txt* (This installs all the dependencies)
+
+3. Enter command: *python manage.py runserver*
       -     If this doesn't work: You probably need to install django.
   
-3. After starting server, go to 127.0.0.1:8000/Starter in your browser.
+4. After starting server, go to *127.0.0.1:8000/Starter* or *127.0.0.1:8000/Starter/steam* in your browser.
