@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static "vendor\bootstrap-4.1.1\css\bootstrap.min.css" %}">
 </head>
 <body>
-
-    <table style="border: 1px solid black;">
+    <table class="table">
         <thead><h2>Person Table</h2></thead>
         <tr>
             <th>
