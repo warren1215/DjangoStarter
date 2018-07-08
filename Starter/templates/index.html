@@ -1,46 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static "vendor\bootstrap-4.1.1\css\bootstrap.min.css" %}">
-</head>
-<body>
-    <table class="table">
-        <thead><h2>Person Table</h2></thead>
-        <tr>
-            <th>
-                #
-            </th>
-            <th>
-                Name
-            </th>
-            <th>
-                Age
-            </th>
-            <th>
-                Date Added
-            </th>
-        </tr>
+    <head>
+        <meta charset="UTF-8">
+        <title>Home</title>
 
-        {% for person, date in db_list_small_dates %}
-            <tr>
-                <th>
-                    {{ forloop.counter }}
-                </th>
-                <th>
-                    {{ person.name }}
-                </th>
-                <th>
-                    {{ person.age }}
-                </th>
-                <th>
-                    {{ date }}
-                </th>
-            </tr>
-        {% endfor %}
+        {% load static %}
+        <link rel="stylesheet" href="{% static "vendor\bootstrap-4.1.1\css\bootstrap.min.css" %}">
 
-    </table>
-</body>
+    </head>
+
+    <body>
+        <h1 class="text-center"> Person Database </h1>
+        <div class="col-lg-12">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th class="header"> # <i class="icon-sort"></i></th>
+                            <th class="header"> Name <i class="icon-sort"></i></th>
+                            <th class="header"> Age <i class="icon-sort"></i></th>
+                            <th class="header"> Date Added <i class="icon-sort"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for person, date in db_list_small_dates %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ person.name }}</td>
+                            <td>{{ person.age }}</td>
+                            <td>{{ date }}</td>
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
 </html>
