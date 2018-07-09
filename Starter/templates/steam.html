@@ -3,39 +3,55 @@
     <head>
         <meta charset="UTF-8">
         <title>Steam Games</title>
-
-        {% load static %}
-        <link rel="stylesheet" href="{% static "vendor\bootstrap-4.1.1\css\bootstrap.min.css" %}">
-
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     </head>
 
     <body>
-        <h1 class="text-center"> Steam API </h1>
-        <h2 class="text-center">Total minutes:{{ total_minutes }}    Total hours:{{ total_hours }}</h2>
-        <h2 class="text-center">{{ need_help }}</h2>
-        <div class="col-lg-12">
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th class="header"> # <i class="icon-sort"></i></th>
-                            <th class="header"> Game Name <i class="icon-sort"></i></th>
-                            <th class="header"> Minutes Played <i class="icon-sort"></i></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        {% for game in game %}
+        <div class="container">
+            <div class="panel panel-default">
+                <div class="panel-heading"> <h2 class="text-center">Steam API</h2> </div>
+                <div class="panel-body">
+                    <h4 class="text-center">
+                        Total Games: {{ steam_user.total_games }}<br>
+                        Total mins: {{ steam_user.total_minutes }}<br>
+                        Total hours: {{ steam_user.total_hours }}<br>
+                        Total years: {{ steam_user.total_years }}<br>
+                        Status: {{ steam_user.help_status }}
+                    </h4>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped" id="myTable">
+                        <thead>
                             <tr>
-                                <td>{{ forloop.counter }}</td>
-                                <td>{{ game.name }}</td>
-                                <td>{{ game.playtime_forever }}</td>
+                                <th class="header"> # </th>
+                                <th class="header"> Game Name</th>
+                                <th class="header"> Minutes Played</th>
                             </tr>
-                        {% endfor %}
+                        </thead>
+                        <tbody>
 
-                    </tbody>
-                </table>
+                            {% for game in steam_user.filtered_games %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ game.name }}</td>
+                                    <td>{{ game.minutes_played }}</td>
+                                </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+        <script>
+            $(document).ready( function () {
+                $('#myTable').DataTable();
+            } );
+        </script>
     </body>
 </html>
