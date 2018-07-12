@@ -1,6 +1,7 @@
 from django.views.generic.base import TemplateView
 from .models import Person, Steam
 from .scripts.steam import gamespulling
+from .scripts.pubg import getPlayerStats
 
 
 class IndexView(TemplateView):
@@ -33,7 +34,7 @@ class SteamView(TemplateView):
         key = '3206A3A552DA6FBE2D7FD6DCE523026B'
 
         # Steam id is for warren1215's profile: 76561198097834692 - warren, 76561198034593027 - d, 76561197992328350 - t
-        steamID = str(76561198035899096)
+        steamID = str(76561198050935364)
 
         # Getting all of my steam games and time played for each.
         games = gamespulling(steamID, key)
@@ -43,5 +44,7 @@ class SteamView(TemplateView):
         steam_user.filter_games()
 
         context['steam_user'] = steam_user
+
+        getPlayerStats("w")
 
         return context
