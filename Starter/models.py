@@ -9,6 +9,7 @@ class Person(models.Model):
     def __str__(self):
         return self.name
 
+    @staticmethod
     def small_dates(self):
         people = Person.objects.all()
         dates = []
@@ -55,3 +56,21 @@ class Steam(models.Model):
             self.help_status = "You need help"
         else:
             self.help_status = "rawr xd"
+
+
+class Season(models.Model):
+    name = models.CharField(max_length=100)
+    region = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+
+class PubgStat(models.Model):
+    name = models.CharField(max_length=50)
+    pubg_id = models.CharField(max_length=50)
+    season = models.ForeignKey(Season, on_delete=models.CASCADE)
+    kdr = models.FloatField()
+
+    def __str__(self):
+        return self.name

@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import IndexView, SteamView
+from .views import PubgView, SteamView
 
 urlpatterns = [
-    path('', IndexView.as_view(), name='index'),
+    path('pubg', PubgView.as_view(), name='pubg'),
     path('steam', SteamView.as_view(), name='steam'),
 ]
